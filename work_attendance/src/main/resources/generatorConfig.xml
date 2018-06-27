@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+
+    <classPathEntry
+            location=
+                    "E:\java_ssm_jar\mysql\mysql-connector-java\5.1.8\mysql-connector-java-5.1.8.jar"/>
+
+    <context id="MysqlTable" targetRuntime="MyBatis3">
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/work-attendance"
+                        userId="root"
+                        password="1379700109">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <!--自动生成代码位置-->
+
+        <!--<javaModelGenerator targetPackage="com.vsu.user.entity"-->
+                            <!--targetProject="E:\IDEA\mycode\work-attendance-d1\src\main\java">-->
+        <!--<javaModelGenerator targetPackage="com.vsu.attend.entity"-->
+        <javaModelGenerator targetPackage="com.vsu.workflow.entity"
+                            targetProject="E:\IDEA\mycode\work-attendance-d1\src\main\java">
+
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimString" value="true"/>
+        </javaModelGenerator>
+
+
+        <!--<sqlMapGenerator targetPackage="com.vsu.user.dao"-->
+        <!--<sqlMapGenerator targetPackage="com.vsu.attend.dao"-->
+        <sqlMapGenerator targetPackage="com.vsu.workflow.dao"
+                         targetProject="E:\IDEA\mycode\work-attendance-d1\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+
+        <!--<javaClientGenerator type="XMLMAPPER"-->
+            <!--targetPackage="com.vsu.user.dao"-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.vsu.workflow.dao"
+                             targetProject="E:\IDEA\mycode\work-attendance-d1\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <!--<table tableName="user" domainObjectName="User"-->
+        <!--<table tableName="attend" domainObjectName="Attend"-->
+        <table tableName="re_attend" domainObjectName="ReAttend"
+               enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+
+        </table>
+    </context>
+
+</generatorConfiguration>
+

@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- CSS -->
+##    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel="stylesheet" href="/static/assets/css/www.css">
+    <link rel="stylesheet" href="/static/assets/css/reset.css">
+    <link rel="stylesheet" href="/static/assets/css/supersized.css">
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+
+</head>
+
+<body>
+
+<div class="page-container">
+    <h1>考勤系统登录</h1>
+    <form>
+        <input type="text" id="username" name="username" class="username" placeholder="账号">
+        <br><br><span id="name_alert" style="color: red; visibility: hidden">请输入账号</span>
+        <input type="password" id="pwd" name="password" class="password" placeholder="密码">
+        <br><br><span id="pwd_alert" style="color: red; visibility: hidden">请输入密码</span>
+        <button id="submitUser" type="button">登录</button>
+    </form>
+    <span id="login_error" style="color: red; visibility: hidden" >用户名密码不匹配，请重新输入</span>
+
+
+
+
+##        <div class="error"><span>+</span></div>
+
+##    <div class="connect">
+##        <p>Or connect with:</p>
+##        <p>
+##            <a class="facebook" href=""></a>
+##            <a class="twitter" href=""></a>
+##        </p>
+##    </div>
+</div>
+##<div align="center">Collect from <a href="http://www.cssmoban.com/" target="_blank" title="模板之家"></a></div>
+
+<!-- Javascript -->
+<script src="/static/assets/js/jquery-1.8.2.min.js"></script>
+<script src="/static/assets/js/supersized.3.2.7.min.js"></script>
+<script src="/static/assets/js/supersized-init.js"></script>
+<script src="/static/assets/js/scripts.js"></script>
+<script>
+
+    $(function(){
+        $("#submitUser").click(function(){
+            var username = $("#username").val();
+            var pwd = $("#pwd").val();
+            var veryfiy = true;
+
+            if (username.length == 0){
+                $("#name_alert").css("visibility", "visible");
+                veryfiy = false;
+            }else{
+
+                $("#name_alert").css("visibility", "hidden");
+            }
+
+            if (pwd.length == 0){
+                $("#pwd_alert").css("visibility", "visible");
+                veryfiy = false;
+            }else{
+                veryfiy = true;
+                $("#name_alert").css("visibility", "hidden");
+            }
+
+            if (veryfiy) {
+//                     AJAX异步提交表单
+                $.ajax({
+                    type:"POST",
+                    url:"/login/check",
+                    data:{"username":username, "password":pwd},
+                    success:function(data){
+                        if(data == "login_success"){
+                            window.location.href = "/user/home";
+                        }else {
+                            $("#login_error").css("visibility", "visible");
+                        }
+
+                    }
+
+                });
+            }
+        });
+    }) ;
+
+
+
+</script>
+
+</body>
+
+</html>
+
